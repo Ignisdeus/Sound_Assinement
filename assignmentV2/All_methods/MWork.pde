@@ -91,7 +91,7 @@ float lineSpaceing, lineMaxHieght;
 float miniLine = 30;
 PVector[] areaOne = new PVector[7];
 PVector[] areaSpawn = new PVector[7];
-char[] notes = {'E', 'A', 'D', 'G', 'B', 'e', 'g'};
+char[] notes = {'e', 'B', 'G', 'D', 'A', 'E'};
 float speed = 1.0f, spawnTimer, killLine, mGun ;
 
 //Audio restart after you play a note
@@ -142,12 +142,27 @@ void shooterLevel() {
   textFont(playFont);
   fill(255, 0, 0);
   ellipse( lineSpaceing *6.5f, killLine, 700, 20);
+  
+  for( int i =0 ; i <= 5; i++){
+    float lineDown = 20 * i;
+    textSize(20 + i + i);
+    fill(255);
+    text(notes[i],areaOne[0].x - lineSpaceing/2, areaOne[0].y + lineDown);
+    
+  }
 
   for (int i =0; i < 7; i++) {
     fill(255);
-    text(notes[i], areaOne[i].x, areaOne[i].y);
+    //text(notes[i], areaOne[i].x, areaOne[i].y);
+    ellipse(areaOne[i].x, areaOne[i].y, 10, 10);
+    line(areaOne[i].x + lineSpaceing/2, areaOne[i].y, areaOne[i].x + lineSpaceing/2, areaOne[i].y + 100);
+
+    for (int f =0; f <= 5; f++) {
+      float lineDown = 20 * f;
+      line(areaOne[i].x - lineSpaceing/2, areaOne[i].y + lineDown, areaOne[i].x + lineSpaceing/2, areaOne[i].y + lineDown);
+    }
   }
-  text(notes[0], areaOne[0].x, areaOne[0].y);
+  //text(notes[0], areaOne[0].x, areaOne[0].y);
   for (int i =0; i < gameObjects.size(); i ++) {
     Objects c;
     c = gameObjects.get(i);
@@ -195,7 +210,7 @@ void shooterLevel() {
     canFire[5] = false;
     gameObjects.add(new Bullet(areaOne[5].x, areaOne[5].y));
   }
-    if (canFire[6] ==true && mGun > 493 && mGun < 496) {
+  if (canFire[6] ==true && mGun > 493 && mGun < 496) {
     canFire[6] = false;
     gameObjects.add(new Bullet(areaOne[6].x, areaOne[6].y));
   }
