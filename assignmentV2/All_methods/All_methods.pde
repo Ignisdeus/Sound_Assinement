@@ -6,6 +6,8 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //AudioInput in;
+int fps = 3;
+PImage[] flap = new PImage[fps];
 
 AudioPlayer beatMusic;
 //AudioSample myMusic;
@@ -23,6 +25,10 @@ void setup() {
   //fullScreen(P3D);
    size(1280, 800, P3D);
   ////////////////////////////mw///////////
+  for(int i =0; i < fps; i ++){
+    flap[i] = loadImage("Bird_"+i+".png");
+    
+  }
   rectMode(CENTER);
   soundFont = createFont("Sound-Sample.ttf", 150);
 

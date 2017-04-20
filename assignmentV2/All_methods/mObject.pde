@@ -198,11 +198,20 @@ class BadGuy extends Objects {
     //badGuyspeed = badGuyspeed;
     this.speed = speed;
   }
-
+int counter =0;
   void render() {
-
-    fill(255);
-    rect(pos.x, pos.y, badWidth, badWidth);
+  if(frameCount % 10 ==0){
+    counter++;
+  }
+    //fill(255);
+   // rect(pos.x, pos.y, badWidth, badWidth);
+    imageMode(CENTER);
+    image(flap[2-counter], pos.x,pos.y);
+    
+    if(counter >= 1){
+      counter =0;
+    }
+    
     //println(pos);
   }
 
