@@ -1,4 +1,5 @@
 //setting stuff up as an inheritence for the solar mix
+// ok Val this is working with the ducks:) im useing 3.2.1 version I think 
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
