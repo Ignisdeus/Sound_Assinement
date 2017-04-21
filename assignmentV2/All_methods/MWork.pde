@@ -41,16 +41,25 @@ void intro() {
     text(title[i], (boxX - boxSize * 0.25f ) + mod, titleY[i]  );
   }
   textFont(playFont);
-  textSize(75 + change);
+  
   noFill();
   //rect(width/2, height* 0.82f, 200, 100);
   textAlign(CENTER, CENTER);
-  text("Play", width/2, height* 0.7f);
-  if (change < 0) {
+  textSize(65 + fontOne);
+  text("Bird Shoot", width/2, height* 0.7f);
+  textSize(75 + fontTwo);
+  text("Just Chill", width/2, height* 0.85f);
+  if (fontOne < 0) {
     scaleUp =true;
   }
-  if (change > 50) {
+  if (fontOne > 50) {
     scaleUp =false;
+  }
+    if (fontTwo < 0) {
+    scaleUpTwo =true;
+  }
+  if (fontTwo > 50) {
+    scaleUpTwo =false;
   }
   if (mouseX > width/2 - collisonBox/2
     && mouseX < width/2 + collisonBox/2
@@ -60,20 +69,41 @@ void intro() {
 
 
     if (scaleUp == true) {
-      change ++;
+      fontOne ++;
     } else {
-      change --;
+      fontOne --;
     }
 
     if (mousePressed == true) {
       stage =1;
     }
-  } else if ( change > 0) {
-    change--;
+  } else if ( fontOne > 0) {
+    fontOne--;
+  }
+    if (mouseX > width/2 - collisonBox/2
+    && mouseX < width/2 + collisonBox/2
+    && mouseY > (height* 0.85f) - ((collisonBox/2)/2)
+    && mouseY < (height* 0.85f) + ((collisonBox/2)/2)) {
+
+
+
+    if (scaleUpTwo == true) {
+      fontTwo ++;
+    } else {
+      fontTwo --;
+    }
+  // runs just chill 
+  
+    if (mousePressed == true) {
+      stage =7;
+    }
+  } else if ( fontTwo > 0) {
+    fontTwo--;
   }
 }
 float change = 0, collisonBox = 200;
-boolean scaleUp = true;
+float fontOne,fontTwo;
+boolean scaleUp = true, scaleUpTwo = true;;
 void yCalulation() {
 
   theta += 0.02f;
