@@ -1,4 +1,6 @@
 //setting stuff up as an inheritence for the solar mix
+//new
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
