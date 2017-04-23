@@ -1,6 +1,11 @@
 //setting stuff up as an inheritence for the solar mix
+<<<<<<< HEAD
 //new
 
+=======
+// ok Val this is working with the ducks:) im useing 3.2.1 version I think 
+// only small bug fixes left :) on Michaels Sections :) 
+>>>>>>> origin/master
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -10,6 +15,9 @@ import ddf.minim.ugens.*;
 //AudioInput in;
 int fps = 3;
 PImage[] flap = new PImage[fps];
+float thetaM, centerX, centerY, rad =250, radTwo =50;
+float micInput;
+AudioInput mic;
 
 AudioPlayer beatMusic;
 //AudioSample myMusic;
@@ -21,15 +29,23 @@ AudioPlayer myMusic;
 
 float hWidth, hHeight;
 PFont soundFont, playFont; 
-
+ArrayList<Object> endSplash = new ArrayList<Object>();
+float colorChange = 0;
 
 void setup() {
   //fullScreen(P3D);
-   size(1280, 800, P3D);
+  size(1280, 800, P3D);
+  centerX = width/2;
+  centerY= height/2;
   ////////////////////////////mw///////////
-  for(int i =0; i < fps; i ++){
+  for (int i =0; i < fps; i ++) {
     flap[i] = loadImage("Bird_"+i+".png");
-    
+  }
+  for ( int i =0; i < 100; i ++) {
+    endSplash.add(new Cog(random(0, width), random(0, height), random(0, 50), random(0, 0.05f)));
+  }
+  for ( int i =0; i < 20; i ++) {
+    endSplash.add(new Spinner(random(0, width), random(0, height), random(0, 20f)));
   }
   rectMode(CENTER);
   soundFont = createFont("Sound-Sample.ttf", 150);
@@ -60,6 +76,7 @@ void setup() {
   hudX = width- 170;
   hudY = height* 0.30f;
   killLine= height-170;
+
 
 
 
@@ -274,7 +291,7 @@ void draw() {
     shooterLevel();
   }
   //if (score>=10) {
-   // stage=5;
+  // stage=5;
   //}
   if (stage ==2) {
     reset();
@@ -282,6 +299,9 @@ void draw() {
 
   if (stage==5) {
     first();
+  }
+  if (stage==7) {
+    justChill();
   }
 
   //stage 2 the growth of the black hole and the infinite pyramid. might have its own music
@@ -390,19 +410,18 @@ void frequency() {
   }
   float freq=fft.indexToFreq(maxBin);
 
-  textSize(16);
+  textSize(40);
   text("Frequency: " + freq, 10, 50);
   mGun = freq;
-if(stage==5){
-  if (average>0.01f) { //this shrinks the sun if you play the guitar
-    sun-=0.25;
-    //println("music");
-  }
-}
-  else {
+  if (stage==5) {
+    if (average>0.01f) { //this shrinks the sun if you play the guitar
+      sun-=0.25;
+      //println("music");
+    }
+  } else {
     //println("silence");
   }
-  ai.enableMonitoring();
+  //ai.enableMonitoring();
 
   if (stage2Timer>1000 && blackRadius<width) { //shows text
     text("Increase the strength", 50, 100);
@@ -479,57 +498,57 @@ if(stage==5){
 
 
   ///for the shooter level
-  
+
   /*if (average>0.03f) {
-    println("Spell: " + spell(freq));
-    println("Music");
-  } else {
-    println("silence");
-  }
-
-  if (spell(freq)=="E" && average>0.3) { //make sure the guitar is on ryhtme and not on treble for this to work
-    canPress = false; 
-    gameObjects.add(new Bullet(areaOne[0].x, areaOne[0].y));
-
-    restartE++;
-  }
-    if (spell(freq)=="A" && average>0.1) {
-    canPress = false; 
-    gameObjects.add(new Bullet(areaOne[1].x, areaOne[1].y));
-
-    restartA++;
-  }
-    if (spell(freq)=="D" && average>0.1) {
-    canPress = false; 
-    gameObjects.add(new Bullet(areaOne[2].x, areaOne[2].y));
-
-    restartD++;
-  }
-    if (spell(freq)=="G" && average>0.2) {
-    canPress = false; 
-    gameObjects.add(new Bullet(areaOne[3].x, areaOne[3].y));
-
-    restartG++;
-  }
-    if (spell(freq)=="B" && average>0.1) {
-    canPress = false; 
-    gameObjects.add(new Bullet(areaOne[4].x, areaOne[4].y));
-
-    restartB++;
-  }
-    if (spell(freq)=="e" && average>0.1) {
-    canPress = false; 
-    gameObjects.add(new Bullet(areaOne[5].x, areaOne[5].y));
-
-    restartF++;  //it is actually e
-  }
-  
-    if (spell(freq)=="gCheat" && average>0.1) {
-    canPress = false; 
-    gameObjects.add(new Bullet(areaOne[6].x, areaOne[6].y));
-
-    restartG++;
-  }*/
+   println("Spell: " + spell(freq));
+   println("Music");
+   } else {
+   println("silence");
+   }
+   
+   if (spell(freq)=="E" && average>0.3) { //make sure the guitar is on ryhtme and not on treble for this to work
+   canPress = false; 
+   gameObjects.add(new Bullet(areaOne[0].x, areaOne[0].y));
+   
+   restartE++;
+   }
+   if (spell(freq)=="A" && average>0.1) {
+   canPress = false; 
+   gameObjects.add(new Bullet(areaOne[1].x, areaOne[1].y));
+   
+   restartA++;
+   }
+   if (spell(freq)=="D" && average>0.1) {
+   canPress = false; 
+   gameObjects.add(new Bullet(areaOne[2].x, areaOne[2].y));
+   
+   restartD++;
+   }
+   if (spell(freq)=="G" && average>0.2) {
+   canPress = false; 
+   gameObjects.add(new Bullet(areaOne[3].x, areaOne[3].y));
+   
+   restartG++;
+   }
+   if (spell(freq)=="B" && average>0.1) {
+   canPress = false; 
+   gameObjects.add(new Bullet(areaOne[4].x, areaOne[4].y));
+   
+   restartB++;
+   }
+   if (spell(freq)=="e" && average>0.1) {
+   canPress = false; 
+   gameObjects.add(new Bullet(areaOne[5].x, areaOne[5].y));
+   
+   restartF++;  //it is actually e
+   }
+   
+   if (spell(freq)=="gCheat" && average>0.1) {
+   canPress = false; 
+   gameObjects.add(new Bullet(areaOne[6].x, areaOne[6].y));
+   
+   restartG++;
+   }*/
 }
 /////////////////////////////////////////////////////////////////////////////////////
 
@@ -553,25 +572,24 @@ void solarSyetm() {
 
 
 void first() {  //stage 5
-  
+
   frequency();
   //muting beatMusic, playing my music
-  if(stage==5){
-    if(beatTimer>0){
-    beatMusic.rewind();
-    beatTimer=0;
+  if (stage==5) {
+    if (beatTimer>0) {
+      beatMusic.rewind();
+      beatTimer=0;
     }
     beatMusic.setGain(-100);
   }
-    if(stage==5){
-  myMusicTimer+=myMusicTimerSpeed;
-  
-  if(myMusicTimer<0){
-    
-  myMusic.play();
-  
-  }
+  if (stage==5) {
+    myMusicTimer+=myMusicTimerSpeed;
+
+    if (myMusicTimer<0) {
+
+      myMusic.play();
     }
+  }
 
   //float total2=0;  //doesnt work!
   //for(int i=0; i<myMusic.bufferSize(); i++){
@@ -579,8 +597,8 @@ void first() {  //stage 5
   //}
   //float average3 = total2 /myMusic.bufferSize();
   //planetRadius=lerp(planetRadius,average3,0.1f);
-  
-  
+
+
   //stage1 the solar system
   if (venus<=10) {
     for (int i=0; i<stars.size(); i++) {//the other red planets
@@ -606,8 +624,8 @@ void first() {  //stage 5
   }
 
   text("stage2timer :" + stage2Timer, 250, 50);
-  if(blackRadius>width){
-   stage=6; 
+  if (blackRadius>width) {
+    stage=6;
   }
 }
 
@@ -802,4 +820,114 @@ void visual() {
   }
 
   //println(frameRate);
+}
+void justChill() {
+
+    
+
+  colorChange =0;
+  background(0);
+  fill(255,255,255,100);
+  textSize(20);
+  text("Space to EXIT", centerX, centerY + (centerY * 0.9f));
+   if (keyPressed ==true) {  
+   if (key == ' ') {
+    stage=0;
+   }
+   }
+  for (int i = 1; i < ai.bufferSize(); i ++)
+  {
+    colorChange += Math.abs(ai.left.get(i));
+  }
+  //colorChange /= mic.bufferSize();
+  println(colorChange);
+  thetaTwo += colorChange/100;
+
+  if (colorChange < 10) {
+
+    while (endSplash.size() > 0) {
+
+      endSplash.remove(0);
+    }
+
+    for ( int i =0; i < 100; i ++) {
+      endSplash.add(new Cog(random(0, width), random(0, height), random(0, 50), random(0, 0.05f)));
+    }
+    for ( int i =0; i < 20; i ++) {
+      endSplash.add(new Spinner(random(0, width), random(0, height), random(0, 20f)));
+    }
+  }
+
+
+  for (int i =0; i < endSplash.size(); i ++) {
+    Object c;
+    c = endSplash.get(i);
+    c.render();
+    c.update();
+  }
+
+  cycleBig();
+}
+float x, y;
+void cycleBig() {
+
+  strokeWeight(10);
+  //ellipse(centerX, centerY, 500,500);
+  for ( int i =0; i < 20; i ++) {
+    //miniCycle( i );
+    miniCycleTwo(i);
+    miniCycleThree(i);
+  }
+}
+
+void miniCycle(float mod) {
+  stroke(255, 0, 255);
+  theta += 0.001f;
+  x = centerX + ( sin( theta + mod) * rad);
+  y = centerY + ( cos( theta + mod) * rad);
+
+  ellipse(x, y, 250, 250);
+}
+float radTwoMod = 0.01f, thetaTwo;
+
+void miniCycleTwo(float mod) {
+
+  stroke(255, 255 - colorChange*2, 0);
+  //thetaTwo -= 0.01f;
+  x = centerX + ( sin( thetaTwo + mod) * radTwo);
+  y = centerY + ( cos( thetaTwo + mod) * radTwo);
+  radTwo += radTwoMod;
+
+  if (radTwo < 50) {
+
+    radTwoMod = 0.01f;
+  }
+  if (radTwo > 100) {
+
+    radTwoMod = -0.01f;
+  }
+
+
+  ellipse(x, y, 75, 75);
+}
+float radThreeMod = 0.02f, thetaSpeedMod = 0.01f;
+void miniCycleThree(float mod) {
+
+  stroke(255, 200, colorChange, 150);
+  //thetaTwo -= 0.01f;
+  x = centerX + ( sin( thetaTwo/2 + mod) * radTwo);
+  y = centerY + ( cos( thetaTwo/2 + mod) * radTwo);
+  radTwo += radTwoMod;
+
+  if (radTwo < 50) {
+
+    radThreeMod = thetaSpeedMod ;
+  }
+  if (radTwo > 200) {
+
+    radThreeMod = thetaSpeedMod;
+  }
+
+
+  ellipse(x, y, 200, 200);
 }

@@ -130,6 +130,7 @@ class Speaker extends Objects {
     }
   }
   void render() {
+    strokeWeight(1);
     fill(255);
     rect(pos.x, pos.y + 30, caseSize* 0.40f, caseSize);
     fill(155);
