@@ -405,7 +405,7 @@ void frequency() {
   }
   float freq=fft.indexToFreq(maxBin);
 
-  textSize(16);
+  textSize(40);
   text("Frequency: " + freq, 10, 50);
   mGun = freq;
   if (stage==5) {
