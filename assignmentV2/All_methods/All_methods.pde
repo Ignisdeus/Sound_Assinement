@@ -416,7 +416,7 @@ void frequency() {
   } else {
     //println("silence");
   }
-  ai.enableMonitoring();
+  //ai.enableMonitoring();
 
   if (stage2Timer>1000 && blackRadius<width) { //shows text
     text("Increase the strength", 50, 100);
