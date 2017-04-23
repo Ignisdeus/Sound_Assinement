@@ -212,6 +212,7 @@ void shooterLevel() {
 
 
   //////////////////////<--what is this -->////////////////////////////////// 
+  ///by the looks of it you are not using frequency. It's still pretty off. especially when playing 5 6 and 7 fret
   for (int i =0; i < 7; i ++) {
 
     canFireAgain(i);

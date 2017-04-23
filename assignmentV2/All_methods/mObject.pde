@@ -207,7 +207,7 @@ int counter =0;
     //fill(255);
    // rect(pos.x, pos.y, badWidth, badWidth);
     imageMode(CENTER);
-    image(flap[2-counter], pos.x,pos.y);
+    //image(flap[2-counter], pos.x,pos.y);
     
     if(counter >= 1){
       counter =0;

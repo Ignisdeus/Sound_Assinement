@@ -1,11 +1,11 @@
 //setting stuff up as an inheritence for the solar mix
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //new
 
-=======
+//=======
 // ok Val this is working with the ducks:) im useing 3.2.1 version I think 
 // only small bug fixes left :) on Michaels Sections :) 
->>>>>>> origin/master
+//>>>>>>> origin/master
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -255,7 +255,7 @@ float myMusicTimerSpeed=1.5;
 
 
 
-String spell(float freq) {
+String spell(float freq) { asgd
   float minDiff=10000;
   int minIndex=-1;
 
