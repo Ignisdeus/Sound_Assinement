@@ -95,7 +95,8 @@ void intro() {
   // runs just chill 
   
     if (mousePressed == true) {
-      stage =7;
+      stage =2; ////// turn this 
+      
     }
   } else if ( fontTwo > 0) {
     fontTwo--;
