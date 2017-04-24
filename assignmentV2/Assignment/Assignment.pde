@@ -367,6 +367,13 @@ void draw() {
     visual();
     popMatrix();
   }
+  if(stage==5){
+    //cubes();
+  }
+  
+  if(stage==6){
+    //terrain();
+  }
   //stage 3
   //the cubes play guitar and the suck back in, background changes colour after each beat
   //has its own music
