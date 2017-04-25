@@ -339,7 +339,7 @@ void draw() {
   background(0);
   //stage1 the solar system has its own music
   //stage=0;
-  println(blackRadius);
+  //println(blackRadius);
   if (stage == 0) {
     intro();
   }
@@ -409,7 +409,7 @@ float cymbaleTimerSpeed=1.5;
 void introToVisuals() {
 
   if (stage==2) {
-    println("this is silence "+silence);
+    //println("this is silence "+silence);
     if (!isSwitch) {
       //background(0);
       myMusic.setGain(-10);

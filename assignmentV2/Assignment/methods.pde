@@ -1,5 +1,5 @@
 
-///my work//
+///my work//V
 void blackHole() { //black hole works
   tint(255, 128); 
   fill(255);
@@ -66,7 +66,7 @@ void frequency() {
       sun-=0.25;
       musicRadius-=1; 
       goTo-=0.0001f;
-      println("goTo:"+goTo);
+      //println("goTo:"+goTo);
       //println("music");
     }
     if (goTo<=0) {
@@ -305,7 +305,7 @@ void solarSyetm() {
   //musicRadius-=10; //this kinda works, it will shrink the sphere down but only gradually
 
 
-  println("musicRadius: " +musicRadius);  
+  //println("musicRadius: " +musicRadius);  
 
 
 
@@ -400,13 +400,15 @@ void visual() { //fully done.
   cymbaleTimer+=cymbaleTimerSpeed;
 
 
-
-  if (cymbaleTimer>100) {
-    aeroMusicTimer+=aeroMusicTimerSpeed;
-    if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
-      aero.trigger();
-    }
-  }
+  //this triggers the cymbales and introduces the aero music
+  aeroTriggerMusic();
+  //if (cymbaleTimer>100) {   
+    
+  //    aeroMusicTimer+=aeroMusicTimerSpeed;
+  //  if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
+  //    aero.trigger();
+  //  }
+  //}
 
   color newColor=lerpColor(first, second, nRate);
 
@@ -468,7 +470,7 @@ void visual() { //fully done.
     cTestB=random(255);
   }
 
-  println("aeroAverage: " + aeroAverage);
+  //println("aeroAverage: " + aeroAverage);
 
   //zAngle+=speedZAngle;
   pushMatrix(); //this is the main sphere
@@ -625,7 +627,7 @@ void visual() { //fully done.
 
 void cubes() {
   background(0);
-  println(box.size());
+  //println(box.size());
   frequency();
   boxTimer+=boxTimerSpeed;
 
@@ -649,13 +651,15 @@ void cubes() {
 
   aeroRadius=lerp(aeroRadius, aeroTarget, 1f);
 
+  //this triggers th aero music
+ // aeroMusicTimer+=aeroMusicTimerSpeed;  
 
-  aeroMusicTimer+=aeroMusicTimerSpeed;
-  aero.setGain(-10); 
+    aero.setGain(-10); 
   cubeSize=aeroRadius/4;
-  if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
-    aero.trigger();
-  }
+  //if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
+  //  aero.trigger();
+  //}
+  aeroTriggerMusic();
 
   if (aeroAverage>0.5) {
     cubeColorR=random(255);
@@ -693,7 +697,7 @@ void cubes() {
     boxTimer=0;
   }
   //println("frameRate: " + frameRate);
-  println("aeroAverage: " + aeroAverage);
+  //println("aeroAverage: " + aeroAverage);
 }
 
 
@@ -733,12 +737,14 @@ void terrain() { //the terrain generator
 
   aeroRadius=lerp(aeroRadius, aeroTarget, 0.00001f);
 
-
-  aeroMusicTimer+=aeroMusicTimerSpeed;
-  aero.setGain(-10); 
-  if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
-    aero.trigger();
-  }
+  //this triggers the aero music
+  //aeroMusicTimer+=aeroMusicTimerSpeed;  
+ 
+    aero.setGain(-10); 
+    aeroTriggerMusic(); //this is the trigger for aero music
+  //if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
+  //  aero.trigger();
+  //}
 
 
 
@@ -773,7 +779,34 @@ void terrain() { //the terrain generator
 
 ///look at Keys N Krates - Dum Dee Dum (JiKay Remix) 
 
+
+void aeroTriggerMusic() {
+  //this triggers the musi after the cymbales clashes.
+  if (cymbaleTimer>100) {   
+
+    aeroMusicTimer+=aeroMusicTimerSpeed;
+    if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
+      aero.trigger();
+    }
+    if(aeroMusicTimer>= 18634.5){ //this will reset the music back to 0
+     aero.stop();
+     aeroMusicTimer=0;
+    }
+  }
+  println("aeroTimer" + aeroMusicTimer);
+}
+
+
+
+
+
+
+
+
+
 ///this is for the cogs
+
+
 
 void justChill() {
 
@@ -794,7 +827,7 @@ void justChill() {
     colorChange += Math.abs(ai.left.get(i));
   }
   //colorChange /= mic.bufferSize();
-  println(colorChange);
+  //println(colorChange);
   thetaTwo += colorChange/100;
 
   if (colorChange < 10) {
