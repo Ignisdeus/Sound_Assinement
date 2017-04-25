@@ -294,6 +294,9 @@ float cubeSize=40;
 float cubeColorR=random(0, 255);
 float cubeColorG=random(0, 255);
 float cubeColorB=random(0, 255);
+float mapColorR=175;
+float mapColorG=80;
+float mapColorB=70;
 
 
 //variables for the terrain generator
@@ -359,7 +362,23 @@ void draw() {
     first();
   }
 
-
+  if(stage>=4){
+   //if(keyPressed){
+    if(keyCode==UP){
+     stage=5; 
+    }
+    if(keyCode==DOWN){
+      stage=6;
+    }
+    if(keyCode==LEFT){
+     stage=4; 
+    }
+    if(keyCode==RIGHT){
+     stage=7; 
+    }
+   //}
+  }
+  
   //stage 2 the growth of the black hole and the infinite pyramid. might have its own music
   if (stage==4) {
     pushMatrix();
@@ -368,11 +387,11 @@ void draw() {
     popMatrix();
   }
   if(stage==5){
-    //cubes();
+    cubes();
   }
   
   if(stage==6){
-    //terrain();
+    terrain();
   }
   //stage 3
   //the cubes play guitar and the suck back in, background changes colour after each beat

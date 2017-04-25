@@ -59,7 +59,7 @@ void frequency() {
   float freq=fft.indexToFreq(maxBin);
 
   textSize(40);
-  text("Frequency: " + freq, 10, 50);
+  //text("Frequency: " + freq, 10, 50);
   mGun = freq;
   if (stage==3) {
     if (average>0.01f) { //this shrinks the sun if you play the guitar
@@ -83,9 +83,10 @@ void frequency() {
   ai.enableMonitoring();
 
   if (stage2Timer>1000 && blackRadius<width) { //shows text
-    text("Increase the strength", 50, 100);
-    text("of the BlackHole", 50, 120);
-    text("with the power of music!", 50, 140);
+    textSize(20);
+    text("Increase the strength", 100, 100);
+    text("of the BlackHole", 75, 120);
+    text("with the power of music!", 100, 140);
   }
   if (stage2Timer>1000) { //as you play the guitar the blackhole increases in size
     if (average>0.01f) {
@@ -380,7 +381,7 @@ void first() {  //stage 5         ///the planets
     p.render();
   }
 
-  text("stage2timer :" + stage2Timer, 250, 50);
+  //text("stage2timer :" + stage2Timer, 250, 50);
   if (blackRadius>width) {
     stage=4;
   }
@@ -403,12 +404,17 @@ void visual() { //fully done.
   //this triggers the cymbales and introduces the aero music
   aeroTriggerMusic();
   //if (cymbaleTimer>100) {   
-    
+
   //    aeroMusicTimer+=aeroMusicTimerSpeed;
   //  if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
   //    aero.trigger();
   //  }
   //}
+  
+  //this is the HUD
+  textSize(20);
+  text("Press the arrow Keys", -500,-300);
+  text("To change Visual",-500,-250);
 
   color newColor=lerpColor(first, second, nRate);
 
@@ -626,7 +632,7 @@ void visual() { //fully done.
 }
 
 void cubes() {
-  background(0);
+  //background(0);
   //println(box.size());
   frequency();
   boxTimer+=boxTimerSpeed;
@@ -652,9 +658,9 @@ void cubes() {
   aeroRadius=lerp(aeroRadius, aeroTarget, 1f);
 
   //this triggers th aero music
- // aeroMusicTimer+=aeroMusicTimerSpeed;  
+  // aeroMusicTimer+=aeroMusicTimerSpeed;  
 
-    aero.setGain(-10); 
+  aero.setGain(-10); 
   cubeSize=aeroRadius/4;
   //if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
   //  aero.trigger();
@@ -703,7 +709,7 @@ void cubes() {
 
 
 void terrain() { //the terrain generator
-  background(0);
+  //background(0);
 
 
   //for the guitar/##\\
@@ -739,9 +745,9 @@ void terrain() { //the terrain generator
 
   //this triggers the aero music
   //aeroMusicTimer+=aeroMusicTimerSpeed;  
- 
-    aero.setGain(-10); 
-    aeroTriggerMusic(); //this is the trigger for aero music
+
+  aero.setGain(-10); 
+  aeroTriggerMusic(); //this is the trigger for aero music
   //if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
   //  aero.trigger();
   //}
@@ -761,7 +767,14 @@ void terrain() { //the terrain generator
     //yoff+=aeroRadius/50;  //0.02
     yoff+=radius;
   }
-  stroke(255);
+
+  if (aeroAverage>0.5f) {   
+    mapColorR=random(255);
+    mapColorG=random(255);
+    mapColorB=random(255);
+  }
+  strokeWeight(1);
+  stroke(mapColorR,mapColorG,mapColorB);
   noFill();
   translate(width/2, height/2+50);
   rotateX(PI/3);
@@ -788,9 +801,9 @@ void aeroTriggerMusic() {
     if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
       aero.trigger();
     }
-    if(aeroMusicTimer>= 18634.5){ //this will reset the music back to 0
-     aero.stop();
-     aeroMusicTimer=0;
+    if (aeroMusicTimer>= 17878.5) { //this will reset the music back to 0
+      aero.stop();
+      aeroMusicTimer=0;
     }
   }
   println("aeroTimer" + aeroMusicTimer);
