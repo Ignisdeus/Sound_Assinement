@@ -218,6 +218,8 @@ void shooterLevel() {
 
     canFireAgain(i);
   }
+  
+  // this the the freq stuff :) 
   if (canFire[0] ==true && mGun > 342 && mGun < 346) {
     canFire[0] = false;
     gameObjects.add(new Bullet(areaOne[0].x, areaOne[0].y));
