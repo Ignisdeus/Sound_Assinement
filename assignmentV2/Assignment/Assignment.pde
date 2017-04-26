@@ -13,7 +13,7 @@ import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 //AudioInput in;
-int fps = 3;
+int fps = 4;
 PImage[] flap = new PImage[fps];
 float thetaM, centerX, centerY, rad =250, radTwo =50;
 float micInput;
@@ -46,7 +46,7 @@ void setup() {
   centerX = width/2;
   centerY= height/2;
   ////////////////////////////mw///////////
-  for (int i =0; i < fps; i ++) {
+  for (int i =1; i < fps; i ++) {
     flap[i] = loadImage("Bird_"+i+".png");
   }
   for ( int i =0; i < 100; i ++) {
