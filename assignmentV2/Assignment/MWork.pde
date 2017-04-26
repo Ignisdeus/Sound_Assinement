@@ -15,6 +15,8 @@ void intro() {
     beatMusic.rewind();
     beatTimer=0;
   }
+  frequency();
+ 
 
   noStroke();
   noFill();
@@ -218,36 +220,36 @@ void shooterLevel() {
 
     canFireAgain(i);
   }
-  
+
   // this the the freq stuff :) 
-  if (canFire[0] ==true && mGun > 342 && mGun < 346) {
-    canFire[0] = false;
-    gameObjects.add(new Bullet(areaOne[0].x, areaOne[0].y));
-  }
-  if (canFire[1] ==true && mGun > 364 && mGun < 368) {
-    canFire[1] = false;
-    gameObjects.add(new Bullet(areaOne[1].x, areaOne[1].y));
-  }
-  if (canFire[2] ==true && mGun > 385 && mGun < 389) {
-    canFire[2] = false;
-    gameObjects.add(new Bullet(areaOne[2].x, areaOne[2].y));
-  }
-  if (canFire[3] ==true && mGun > 407 && mGun < 411) {
-    canFire[3] = false;
-    gameObjects.add(new Bullet(areaOne[3].x, areaOne[3].y));
-  }
-  if (canFire[4] ==true && mGun > 880 && mGun < 884) {
-    canFire[4] = false;
-    gameObjects.add(new Bullet(areaOne[4].x, areaOne[4].y));
-  }
-  if (canFire[5] ==true && mGun > 923 && mGun < 927) {
-    canFire[5] = false;
-    gameObjects.add(new Bullet(areaOne[5].x, areaOne[5].y));
-  }
-  if (canFire[6] ==true && mGun > 988 && mGun < 4992) {
-    canFire[6] = false;
-    gameObjects.add(new Bullet(areaOne[6].x, areaOne[6].y));
-  }
+  //if (canFire[0] ==true && mGun > 342 && mGun < 346) {
+  //  canFire[0] = false;
+  //  gameObjects.add(new Bullet(areaOne[0].x, areaOne[0].y));
+  //}
+  //if (canFire[1] ==true && mGun > 364 && mGun < 368) {
+  //  canFire[1] = false;
+  //  gameObjects.add(new Bullet(areaOne[1].x, areaOne[1].y));
+  //}
+  //if (canFire[2] ==true && mGun > 385 && mGun < 389) {
+  //  canFire[2] = false;
+  //  gameObjects.add(new Bullet(areaOne[2].x, areaOne[2].y));
+  //}
+  //if (canFire[3] ==true && mGun > 407 && mGun < 411) {
+  //  canFire[3] = false;
+  //  gameObjects.add(new Bullet(areaOne[3].x, areaOne[3].y));
+  //}
+  //if (canFire[4] ==true && mGun > 880 && mGun < 884) {
+  //  canFire[4] = false;
+  //  gameObjects.add(new Bullet(areaOne[4].x, areaOne[4].y));
+  //}
+  //if (canFire[5] ==true && mGun > 923 && mGun < 927) {
+  //  canFire[5] = false;
+  //  gameObjects.add(new Bullet(areaOne[5].x, areaOne[5].y));
+  //}
+  //if (canFire[6] ==true && mGun > 988 && mGun < 4992) {
+  //  canFire[6] = false;
+  //  gameObjects.add(new Bullet(areaOne[6].x, areaOne[6].y));
+  //}
   /*if (keyPressed ==true) {  
    if (key == 'a' && canPress ==true|| key == 'A' && canPress ==true) {
    canPress = false; 

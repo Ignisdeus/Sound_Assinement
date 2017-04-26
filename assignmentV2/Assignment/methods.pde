@@ -29,6 +29,8 @@ void blackHole() { //black hole works
 }
 
 /////////////////////////////////////////////////////////////////////////////////
+///The mother Brain of frequency\\\\\
+//////
 void frequency() {
   //float min=100;
   //float minimaverage=0;
@@ -57,10 +59,17 @@ void frequency() {
     }
   }
   float freq=fft.indexToFreq(maxBin);
+  float freq2=fft.indexToFreq(maxBin);
 
   textSize(40);
   //text("Frequency: " + freq, 10, 50);
   mGun = freq;
+  if (average>0.03f) {
+    println("Spell: " + spell2(freq2));
+    println("Music");
+  } else {
+    println("silence");
+  }
   if (stage==3) {
     if (average>0.01f) { //this shrinks the sun if you play the guitar
       sun-=0.25;
@@ -210,6 +219,35 @@ void frequency() {
    
    restartG++;
    }*/
+
+  if (canFire[0] ==true && spell2(freq) =="f1" && average>0.08 ||canFire[0] ==true && spell2(freq) =="f1h" && average>0.1  ) {
+    canFire[0] = false;
+    gameObjects.add(new Bullet(areaOne[0].x, areaOne[0].y));
+  }
+  if (canFire[1] ==true && spell2(freq) =="f2" && average>0.08||canFire[0] ==true && spell2(freq) =="f2h" && average>0.1 ) {
+    canFire[1] = false;
+    gameObjects.add(new Bullet(areaOne[1].x, areaOne[1].y));
+  }
+  if (canFire[2] ==true &&spell2(freq) =="f3" && average>0.08||canFire[0] ==true && spell2(freq) =="f3h" && average>0.1 ) {
+    canFire[2] = false;
+    gameObjects.add(new Bullet(areaOne[2].x, areaOne[2].y));
+  }
+  if (canFire[3] ==true && spell2(freq) =="f4" && average>0.1 ||canFire[0] ==true && spell2(freq) =="f4h" && average>0.1 ) {
+    canFire[3] = false;
+    gameObjects.add(new Bullet(areaOne[3].x, areaOne[3].y));
+  }
+  if (canFire[4] ==true && spell2(freq) =="f5" && average>0.01 ||canFire[0] ==true && spell2(freq) =="f5h" && average>0.01 ) {
+    canFire[4] = false;
+    gameObjects.add(new Bullet(areaOne[4].x, areaOne[4].y));
+  }
+  if (canFire[5] ==true && spell2(freq) =="f6" && average>0.05) {
+    canFire[5] = false;
+    gameObjects.add(new Bullet(areaOne[5].x, areaOne[5].y));
+  }
+  if (canFire[6] ==true &&spell2(freq) =="f7" && average>0.05) {
+    canFire[6] = false;
+    gameObjects.add(new Bullet(areaOne[6].x, areaOne[6].y));
+  }
 
   //for the stage3 intro to visuals
   if (stage==2) {
@@ -410,11 +448,11 @@ void visual() { //fully done.
   //    aero.trigger();
   //  }
   //}
-  
+
   //this is the HUD
   textSize(20);
-  text("Press the arrow Keys", -500,-300);
-  text("To change Visual",-500,-250);
+  text("Press the arrow Keys", -500, -300);
+  text("To change Visual", -500, -250);
 
   color newColor=lerpColor(first, second, nRate);
 
@@ -774,7 +812,7 @@ void terrain() { //the terrain generator
     mapColorB=random(255);
   }
   strokeWeight(1);
-  stroke(mapColorR,mapColorG,mapColorB);
+  stroke(mapColorR, mapColorG, mapColorB);
   noFill();
   translate(width/2, height/2+50);
   rotateX(PI/3);
@@ -801,7 +839,7 @@ void aeroTriggerMusic() {
     if (aeroMusicTimer>=0 && aeroMusicTimer<=1.5) {
       aero.trigger();
     }
-    if (aeroMusicTimer>= 17878.5) { //this will reset the music back to 0
+    if (aeroMusicTimer>= 17226.5) { //this will reset the music back to 0
       aero.stop();
       aeroMusicTimer=0;
     }

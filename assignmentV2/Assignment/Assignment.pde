@@ -282,9 +282,17 @@ ArrayList<Objects> gameBadGuy = new ArrayList<Objects>();
 int level =0;
 ///////////////////////
 //to detect each string\\
-float[] allFreq={172, 215, 301, 387, 409, 473, 645, 796};
-String[] guitarNotes={"E", "A", "D", "G", "gCheat", "B", "e", "gCheat"};
+float[] allFreq={172, 215, 301, 387, 409, 473, 645, 796};//this is for string skipping
+String[] guitarNotes={"E", "A", "D", "G", "gCheat", "B", "e", "gCheat"};//this is for string skipping
 
+//this is for the first string
+float[] allFreq2={88,366,387,409,430,452,473,495,689,732,796,839,904};//the order is
+String[] guitarNotesLittleE={"Nothing","f1","f2","f3","f4","f5","f6","f7","f1h","f2h","f3h","f4h","f5h"};
+//409 is 3  or 796 soft or hard
+//473 is 6
+//495 is 7
+//playing soft i get: 366,387,409,430,452,473 in that order 1-7
+//playing hard i get: 689,732,796,839,904,473 in that order 1-7
 ///controlling the songs
 float beatTimer;
 float beatTimerSpeed=1.5;
@@ -311,7 +319,8 @@ int cols, rows;
 int scale=20;
 
 
-
+///////////The spell for frequency accuracy\\\\\\\
+//string skipping and other stuff.
 String spell(float freq) { 
   float minDiff=10000;
   int minIndex=-1;
@@ -325,6 +334,23 @@ String spell(float freq) {
     }
   }
   return guitarNotes[minIndex];
+}
+
+
+//for the firat string
+String spell2(float freq2) { 
+  float minDiff=10000;
+  int minIndex=-1;
+
+  for (int i=0; i<allFreq2.length; i++)
+  {
+    float diff=abs(freq2-allFreq2[i]);
+    if (diff<minDiff) {
+      minDiff=diff;
+      minIndex=i;
+    }
+  }
+  return guitarNotesLittleE[minIndex];
 }
 
 
@@ -349,6 +375,11 @@ void draw() {
 
   if (stage == 1) {
     shooterLevel();
+   
+    if(keyCode== ' '){
+     stage=0; 
+    }
+    
   }
   //if (score>=10) {
   // stage=5;
@@ -485,7 +516,7 @@ void introToVisuals() {
         textSize(75);
         text("Enter the flow state...", 493, height/2);
       }
-      text("transitionTimer:"+transitionTimer, 250, 250); //will take out later
+      //text("transitionTimer:"+transitionTimer, 250, 250); //will take out later
       if (transitionTimer>2000) {
         textSize(16);
         text("play E to begin", 150, 150);
